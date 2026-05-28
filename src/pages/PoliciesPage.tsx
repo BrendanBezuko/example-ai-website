@@ -22,22 +22,24 @@ const sections = [
 
 export function PoliciesPage() {
   return (
-    <main>
+    <main className="page">
       <PageHero
         label="Legal"
-        title="Policies & Help"
+        title="Policies & help"
         subtitle="How we handle your data, communications, and project engagements."
       />
 
       <section className="section">
-        <div className="container content-narrow">
-          {sections.map((s) => (
-            <div key={s.title} className="policy-block">
-              <h2>{s.title}</h2>
-              <p className="prose">{s.body}</p>
-            </div>
-          ))}
-          <p className="prose policy-contact">
+        <div className="container">
+          <div className="policy-grid">
+            {sections.map((s) => (
+              <article key={s.title} className="policy-card">
+                <h2>{s.title}</h2>
+                <p>{s.body}</p>
+              </article>
+            ))}
+          </div>
+          <p className="policy-contact">
             Questions? <Link to="/contact">Contact us</Link> and we&apos;ll clarify anything
             not covered here.
           </p>

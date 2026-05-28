@@ -10,9 +10,9 @@ type PageHeroProps = {
 export function PageHero({ label, title, subtitle, cta }: PageHeroProps) {
   return (
     <section className="page-hero">
-      <div className="page-hero-bg" aria-hidden="true" />
-      <div className="container page-hero-content">
-        {label && <p className="section-label">{label}</p>}
+      <div className="page-hero-glow" aria-hidden="true" />
+      <div className="container page-hero-inner">
+        {label && <p className="page-hero-eyebrow">{label}</p>}
         <h1 className="page-hero-title">{title}</h1>
         {subtitle && <p className="page-hero-subtitle">{subtitle}</p>}
         {cta && (

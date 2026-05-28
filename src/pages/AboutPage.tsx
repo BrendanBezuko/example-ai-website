@@ -2,40 +2,49 @@ import { Link } from 'react-router-dom'
 import { PageHero } from '../components/PageHero'
 import { CtaSection } from '../components/CtaSection'
 import { openRoles, values } from '../data/pages'
+import { stats } from '../data/content'
 
 export function AboutPage() {
   return (
-    <main>
+    <main className="page">
       <PageHero
-        label="About Us"
-        title="A Tech-First Marketing Company"
-        subtitle="Founded in 2024, Marmot Marketing connects talented programmers, animators, marketers, and more with Alberta businesses—fostering local growth through creative, measurable digital work."
-        cta={{ label: 'Get in Touch', to: '/contact' }}
+        label="About us"
+        title="A tech-first studio rooted in Alberta"
+        subtitle="We connect skilled builders and marketers with local businesses—shipping fast websites and campaigns you can measure."
+        cta={{ label: 'Get in touch', to: '/contact' }}
       />
 
-      <section className="section">
-        <div className="container content-narrow">
-          <h2 className="section-title section-title-left">Who We Are</h2>
-          <p className="prose">
-            Marmot Marketing is at the forefront of enhancing Alberta&apos;s local scene by
-            connecting skilled professionals with the community and local businesses. Our
-            mission is to foster growth and innovation within the region, providing
-            unparalleled expertise and creative solutions.
-          </p>
-          <p className="prose">
-            The name matters to us: founder Brendan Bezuko learned to snowboard at Marmot
-            Basin, a local Alberta ski hill that still holds a special place—so when it
-            came time to name the company, Marmot felt like the right way to carry that
-            connection and passion into the work we do.
-          </p>
+      <section className="section page-intro-section">
+        <div className="container page-intro-grid">
+          <div>
+            <h2 className="section-title section-title-left">Who we are</h2>
+            <p className="prose">
+              Marmot Marketing sits at the intersection of development and digital
+              marketing—helping Alberta businesses grow with sites and campaigns built
+              for real outcomes, not vanity metrics.
+            </p>
+            <p className="prose">
+              The name comes from Marmot Basin, where founder Brendan Bezuko learned to
+              snowboard—a local hill that still shapes how we show up for clients: grounded,
+              direct, and invested in the community we serve.
+            </p>
+          </div>
+          <ul className="page-stat-strip" aria-label="Highlights">
+            {stats.map((stat) => (
+              <li key={stat.label}>
+                <span className="page-stat-value">{stat.value}</span>
+                <span className="page-stat-label">{stat.label}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
       <section className="section section-alt">
         <div className="container">
-          <p className="section-label">Meet the Team</p>
-          <h2 className="section-title">Founder-led, hands-on delivery</h2>
-          <p className="section-subtitle">
+          <p className="section-label">Meet the team</p>
+          <h2 className="section-title section-title-left">Founder-led, hands-on delivery</h2>
+          <p className="page-section-lead">
             You work directly with the person planning and building your project—no layers
             of account managers between you and the work.
           </p>
@@ -81,19 +90,30 @@ export function AboutPage() {
 
       <section className="section">
         <div className="container">
-          <p className="section-label">Our Mission</p>
-          <h2 className="section-title">Connecting Talent with Opportunity</h2>
-          <p className="section-subtitle">
-            We bridge the gap between Alberta&apos;s creative talent and the businesses that
-            need them—helping local companies succeed in an increasingly digital world.
-          </p>
+          <p className="section-label">What we value</p>
+          <h2 className="section-title section-title-left">How we work with clients</h2>
+          <div className="values-grid">
+            {values.map((v) => (
+              <div key={v.title} className="value-card">
+                <span className="value-icon" aria-hidden="true">
+                  {v.icon}
+                </span>
+                <h3>{v.title}</h3>
+                <p>{v.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       <section className="section section-alt">
         <div className="container">
-          <p className="section-label">Join Our Team</p>
-          <h2 className="section-title">We&apos;re Always Looking for Talent</h2>
+          <p className="section-label">Join our team</p>
+          <h2 className="section-title section-title-left">We&apos;re always looking for talent</h2>
+          <p className="page-section-lead">
+            Designers, marketers, photographers, and builders who care about Alberta
+            businesses—reach out if you want to collaborate.
+          </p>
           <div className="roles-grid">
             {openRoles.map((role) => (
               <div key={role.title} className="role-card">
@@ -109,25 +129,7 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="section">
-        <div className="container">
-          <p className="section-label">What We Value</p>
-          <h2 className="section-title">Our Core Principles</h2>
-          <div className="values-grid">
-            {values.map((v) => (
-              <div key={v.title} className="value-card">
-                <span className="value-icon" aria-hidden="true">
-                  {v.icon}
-                </span>
-                <h3>{v.title}</h3>
-                <p>{v.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <CtaSection />
+      <CtaSection className="home-cta-section" />
     </main>
   )
 }

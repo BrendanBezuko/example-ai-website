@@ -4,14 +4,14 @@ import { CtaSection } from '../components/CtaSection'
 
 export function FaqPage() {
   return (
-    <main>
+    <main className="page">
       <PageHero
-        label="Asked questions"
-        title="Frequently Asked Questions"
-        subtitle="Answers to common questions about websites, marketing, SEO, and working with us."
+        label="FAQ"
+        title="Answers before you reach out"
+        subtitle="Common questions about websites, marketing, SEO, and working with our team."
       />
-      <Faq showHeader={false} />
-      <CtaSection />
+      <Faq showHeader={false} className="page-faq-section" />
+      <CtaSection className="home-cta-section" />
     </main>
   )
 }

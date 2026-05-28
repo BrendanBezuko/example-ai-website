@@ -12,17 +12,17 @@ export function PricingPage() {
   }
 
   return (
-    <main>
+    <main className="page">
       <PageHero
         label="Pricing"
         title={page.title}
         subtitle={page.tagline}
-        cta={{ label: 'Request a Quote', to: '/contact' }}
+        cta={{ label: 'Request a quote', to: '/contact' }}
       />
 
       <section className="section">
         <div className="container">
-          <p className="section-subtitle">{page.intro}</p>
+          <p className="page-section-lead pricing-intro">{page.intro}</p>
           <div className="pricing-grid">
             {page.tiers.map((tier) => (
               <div
@@ -42,7 +42,7 @@ export function PricingPage() {
                   to="/contact"
                   className={`btn ${tier.highlighted ? 'btn-primary' : 'btn-outline'}`}
                 >
-                  Get Started
+                  Get started
                 </Link>
               </div>
             ))}
@@ -54,7 +54,7 @@ export function PricingPage() {
         </div>
       </section>
 
-      <CtaSection />
+      <CtaSection className="home-cta-section" />
     </main>
   )
 }
