@@ -1,0 +1,53 @@
+name: Deploy frontend to Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - web/**
+      - .github/workflows/cloudflare-pages-deploy.yml
+  workflow_dispatch:
+
+concurrency:
+  group: cloudflare-pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    env:
+      NODE_VERSION: "24"
+      CLOUDFLARE_PAGES_PROJECT_NAME: example-website
+      BUILD_OUTPUT_DIR: web/dist
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static site
+        run: npm run build
+
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: ${{ env.CLOUDFLARE_PAGES_PROJECT_NAME }}
+          directory: ${{ env.BUILD_OUTPUT_DIR }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
