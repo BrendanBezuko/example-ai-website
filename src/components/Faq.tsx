@@ -1,21 +1,29 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { faqs } from '../data/content'
 
-export function Faq({ showHeader = true }: { showHeader?: boolean }) {
+type FaqProps = {
+  showHeader?: boolean
+  limit?: number
+  className?: string
+}
+
+export function Faq({ showHeader = true, limit, className = '' }: FaqProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const items = limit ? faqs.slice(0, limit) : faqs
 
   return (
-    <section id="faq" className="section faq-section">
+    <section id="faq" className={`section faq-section ${className}`.trim()}>
       <div className="container">
         {showHeader && (
           <>
             <p className="section-label">Asked questions</p>
-            <h2 className="section-title">Frequently Asked Questions</h2>
+            <h2 className="section-title section-title-left">Common questions</h2>
           </>
         )}
 
         <ul className="faq-list">
-          {faqs.map((faq, index) => {
+          {items.map((faq, index) => {
             const isOpen = openIndex === index
             return (
               <li key={faq.question} className={`faq-item ${isOpen ? 'is-open' : ''}`}>
@@ -50,6 +58,12 @@ export function Faq({ showHeader = true }: { showHeader?: boolean }) {
             )
           })}
         </ul>
+
+        {limit && limit < faqs.length && (
+          <p className="home-faq-more">
+            <Link to="/faq">Read all {faqs.length} questions →</Link>
+          </p>
+        )}
       </div>
     </section>
   )

@@ -1,8 +1,15 @@
 import { Link } from 'react-router-dom'
 
-export function CtaSection() {
+type CtaSectionProps = {
+  className?: string
+}
+
+export function CtaSection({ className = '' }: CtaSectionProps) {
   return (
-    <section className="section cta-section" aria-labelledby="cta-heading">
+    <section
+      className={`section cta-section ${className}`.trim()}
+      aria-labelledby="cta-heading"
+    >
       <div className="container cta-inner">
         <div className="cta-copy">
           <h2 id="cta-heading" className="section-title">

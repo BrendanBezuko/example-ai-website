@@ -1,21 +1,23 @@
 import { Hero } from '../components/Hero'
-import { Services } from '../components/Services'
+import { HomeFeaturedWork } from '../components/HomeFeaturedWork'
+import { HomeServices } from '../components/HomeServices'
 import { WhyMarmot } from '../components/WhyMarmot'
-import { AboutStats } from '../components/AboutStats'
-import { CtaSection } from '../components/CtaSection'
+import { HomeProcess } from '../components/HomeProcess'
+import { HomeProof } from '../components/HomeProof'
 import { Faq } from '../components/Faq'
-import { Cities } from '../components/Cities'
+import { CtaSection } from '../components/CtaSection'
 
 export function HomePage() {
   return (
-    <main>
+    <main className="home">
       <Hero />
-      <Services />
-      <WhyMarmot />
-      <AboutStats />
-      <CtaSection />
-      <Faq />
-      <Cities />
+      <HomeFeaturedWork />
+      <HomeServices />
+      <WhyMarmot className="home-why-section" />
+      <HomeProcess />
+      <HomeProof />
+      <Faq limit={4} className="home-faq-section" />
+      <CtaSection className="home-cta-section" />
     </main>
   )
 }
